@@ -17,13 +17,37 @@ function determinePerformanceRating(averageSales) {
 
 // Task 3: Create a function to identify top and bottom performers
 
-function findTopAndBottomPerformers(salespeople) {
-    if (salespeople.length === 0), return {topPerformer: null, bottomPerformer: null };
-    const topPerformer = salespeople.reduce((top, current) => 
+function findTopAndBottomPerformers(salesPeople) {
+    if (salesPeople.length === 0), return {topPerformer: null, bottomPerformer: null };
+    const topPerformer = salesPeople.reduce((top, current) => 
         current.totalsales > top.totalsales ? current : top
     );
-    const bottomPerformer = salespeople.reduce((bottom, current) => 
+    const bottomPerformer = salesPeople.reduce((bottom, current) => 
         current.totalsales < bottom.totalsales ? current : bottom
     );
     return { topPerformer, bottomPerformer};
+}
+
+// Task 4: Combine Function to Generate a Performance Report
+
+// Calculate average sales and performance rating for each salesperson
+function generatePerformanceReport(salesData) {
+    const report = salesData.map(person => {
+        const averageSales = calculateAverageSales(person.sales);
+        const rating = determinePerformanceRating(averageSales);
+        return {
+            name: person.name,
+            averageSales,
+            rating};
+        });
+        
+    // Find top and bottom performers
+    const { topPerformer, bottomPerformer } = findTopAndBottomPerformers(report);
+
+    // Return the full performance report
+    return {
+        salesPeople: report,
+        topPerformer,
+        bottomPerformer
+    };
 }
