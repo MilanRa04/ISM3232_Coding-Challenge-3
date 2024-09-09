@@ -17,15 +17,18 @@ function determinePerformanceRating(averageSales) {
 
 // Task 3: Create a function to identify top and bottom performers
 
+
 function findTopAndBottomPerformers(salesPeople) {
-    if (salesPeople.length === 0), return {topPerformer: null, bottomPerformer: null };
+    if (salesPeople.length === 0) return { topPerformer: null, bottomPerformer: null };
     const topPerformer = salesPeople.reduce((top, current) => 
-        current.totalsales > top.totalsales ? current : top
+        current.totalSales > top.totalSales ? current : top
     );
     const bottomPerformer = salesPeople.reduce((bottom, current) => 
-        current.totalsales < bottom.totalsales ? current : bottom
+        current.totalSales < bottom.totalSales ? current : bottom
     );
-    return { topPerformer, bottomPerformer};
+
+    
+    return { topPerformer, bottomPerformer };
 }
 
 // Task 4: Combine Function to Generate a Performance Report
@@ -45,9 +48,19 @@ function generatePerformanceReport(salesData) {
     const { topPerformer, bottomPerformer } = findTopAndBottomPerformers(report);
 
     // Return the full performance report
-    return {
-        salesPeople: report,
-        topPerformer,
-        bottomPerformer
-    };
+    return { salesPeople: report, topPerformer, bottomPerformer };
 }
+
+// Task 5: Implement Sales Data
+
+const salesData = [
+    { name: 'Alice', sales: [12000, 15000, 13000] },
+    { name: 'Bob', sales: [7000, 6000, 7500] },
+    { name: 'Charlie', sales: [3000, 4000, 3500] },
+    { name: 'Diana', sales: [9000, 8500, 9200] },
+];
+
+const finalReport = generatePerformanceReport(salesData)
+console.log(finalReport)
+// In debug console click the arrow to the left of the array, then click the play/pause button at the top of the screen
+console.log(finalReport)
